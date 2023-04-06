@@ -5,10 +5,27 @@ const book = document.querySelector('#book');
 
 // add more papers as needed
 const papers = document.querySelectorAll('.paper');
+
+// Add front/back class to pages
+let counter = 0;
+papers.forEach((element, index) => {
+   if (index % 2 === 0) {
+      // even index, add .back class
+      element.classList.add('front');
+      counter++;
+   } else {
+      // odd index, add .front class
+      element.classList.add('back');
+   }
+   element.dataset.page = 'page' + counter;
+});
+
 const pages = [];
 papers.forEach(paper => {
    const page = paper.getAttribute('data-page');
-   pages.push(page);
+   if (!pages.includes(page)) {
+      pages.push(page);
+   }
 });
 
 // Testing
@@ -57,6 +74,15 @@ function goNext() {
       paper.style.zIndex = currentState + 1;
       paper.style.visibility = 'visible';
 
+      const closestFrontElement = paper.nextElementSibling;
+
+      if (
+         closestFrontElement &&
+         closestFrontElement.classList.contains('front')
+      ) {
+         closestFrontElement.style.visibility = 'visible';
+      }
+
       if (currentState === 0) {
          openBook();
       } else if (currentState === numOfPapers - 1) {
@@ -64,7 +90,7 @@ function goNext() {
          console.log('entered');
       }
 
-      currentState++;
+      currentState += 2;
 
       // Testing
       console.log('CS: ' + currentState);
