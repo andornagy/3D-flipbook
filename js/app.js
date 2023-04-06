@@ -11,6 +11,7 @@ papers.forEach(paper => {
    pages.push(page);
 });
 
+// Testing
 console.log(pages);
 
 // Business Logic
@@ -18,6 +19,7 @@ let currentState = 0;
 let numOfPapers = pages.length;
 let maxState = numOfPapers + 1;
 
+// Testing
 console.log(numOfPapers);
 console.log(maxState);
 
@@ -29,6 +31,8 @@ function openBook() {
    book.style.transform = 'translateX(50%)';
    prevBtn.style.transform = 'translateX(-180px)';
    nextBtn.style.transform = 'translateX(180px)';
+
+   // Testing
    console.log('book opened');
 }
 
@@ -40,12 +44,15 @@ function closeBook(isFirstPage) {
    }
    prevBtn.style.transform = 'translateX(0px)';
    nextBtn.style.transform = 'translateX(0px)';
+
+   // Testing
    console.log('book closed');
 }
 
 function goNext() {
    if (currentState < maxState) {
       const paper = papers[currentState];
+
       paper.classList.add('flipped');
       paper.style.zIndex = currentState + 1;
       paper.style.visibility = 'visible';
@@ -58,6 +65,8 @@ function goNext() {
       }
 
       currentState++;
+
+      // Testing
       console.log('CS: ' + currentState);
       console.log('z: ' + (currentState + 1));
    }
@@ -66,6 +75,7 @@ function goNext() {
 function goPrevious() {
    if (currentState > 0) {
       const paper = papers[currentState - 1];
+
       paper.classList.remove('flipped');
       paper.style.zIndex = maxState - currentState - 1;
 
@@ -75,6 +85,8 @@ function goPrevious() {
          openBook();
       }
       currentState--;
+
+      // Testing
       console.log(currentState);
       console.log('z:' + (maxState - currentState - 1));
    }
