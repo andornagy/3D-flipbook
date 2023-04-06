@@ -6,7 +6,6 @@ const book = document.querySelector('#book');
 // add more papers as needed
 const papers = document.querySelectorAll('.paper');
 const pages = [];
-
 papers.forEach(paper => {
    const page = paper.getAttribute('data-page');
    pages.push(page);
@@ -20,6 +19,7 @@ let numOfPapers = pages.length;
 let maxState = numOfPapers + 1;
 
 console.log(numOfPapers);
+console.log(maxState);
 
 // Event listeners
 prevBtn.addEventListener('click', goPrevious);
@@ -48,16 +48,18 @@ function goNext() {
       const paper = papers[currentState];
       paper.classList.add('flipped');
       paper.style.zIndex = currentState + 1;
+      paper.style.visibility = 'visible';
 
       if (currentState === 0) {
          openBook();
       } else if (currentState === numOfPapers - 1) {
          closeBook(false);
+         console.log('entered');
       }
 
       currentState++;
-      console.log(currentState);
-      console.log('z:' + (currentState + 1));
+      console.log('CS: ' + currentState);
+      console.log('z: ' + (currentState + 1));
    }
 }
 

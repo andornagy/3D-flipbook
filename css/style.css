@@ -53,6 +53,16 @@ i {
    left: 0;
    perspective: 1500px;
    z-index: 0;
+   visibility: hidden;
+}
+
+.flipped + .paper {
+   visibility: visible;
+}
+
+.first {
+   z-index: 2;
+   visibility: visible;
 }
 
 .front {
@@ -83,6 +93,7 @@ i {
    z-index: 1;
 }
 
+
 .front-content,
 .back-content {
    width: 100%;
@@ -102,6 +113,7 @@ i {
 .flipped .back {
    transform: rotateY(-180deg)
 }
+
 
 /* Paper Z-index */
 /* #p1 {
